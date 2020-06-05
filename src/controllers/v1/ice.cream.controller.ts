@@ -14,7 +14,7 @@ import { Response } from "express";
 class SegementersController {
   @Get("/")
   async segmenterList(@Res() response: any) {
-    return 'Hi';
+    return 'Hi'
   }
 }
 export default SegementersController;
