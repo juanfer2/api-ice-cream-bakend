@@ -4,17 +4,29 @@ import {
   Req,
   Res,
   Param,
+  Body,
   JsonController,
   Post,
   UploadedFile,
   Delete,
 } from "routing-controllers";
+import { IceCreamService } from "../../services/v1/ice.cream.service";
 import { Response } from "express";
+
 @JsonController("/v1/ice_creams")
-class SegementersController {
+class IceCreamController {
+  constructor(private readonly iceCreamService: IceCreamService) {}
+
   @Get("/")
-  async segmenterList(@Res() response: any) {
-    return 'Hi'
+  iceCreamList(@Res() response: any) {
+    const iceCreams = this.iceCreamService.getIceCream();
+    return iceCreams;
+  }
+
+  @Post("/")
+  iceCreamCreate(@Body() iceCreamInput: any) {
+    const iceCream = this.iceCreamService.createIceCream(iceCreamInput);
+    return iceCream;
   }
 }
-export default SegementersController;
+export default iceCreamController;
