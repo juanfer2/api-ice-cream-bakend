@@ -6,7 +6,7 @@ import {
   Param,
   Body,
   JsonController,
-  Post
+  Post,
   UploadedFile,
   Delete,
 } from "routing-controllers";
