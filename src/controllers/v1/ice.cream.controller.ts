@@ -9,6 +9,7 @@ import {
   Post,
   UploadedFile,
   Delete,
+  Put,
 } from "routing-controllers";
 import { IceCreamService } from "../../services/v1/ice.cream.service";
 import { Response } from "express";
@@ -28,5 +29,17 @@ class IceCreamController {
     const iceCream = this.iceCreamService.createIceCream(iceCreamInput);
     return iceCream;
   }
+
+  @Put("/:id")
+  iceCreamUpdate(@Param("id") id: string, @Body() iceCream: any) {
+    const updatedIceCream = this.iceCreamService.updateIceCream(id, iceCream);
+    return iceCream;
+  }
+
+  @Delete("/:id")
+  iceCreamDelete(@Param("id") id: string) {
+    const deletedIceCream = this.iceCreamService.deleteIceCream(id);
+    return this.iceCreamList;
+  }
 }
-export default iceCreamController;
+export default IceCreamController;

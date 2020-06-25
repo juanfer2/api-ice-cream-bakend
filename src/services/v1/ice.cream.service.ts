@@ -34,4 +34,22 @@ export class IceCreamService {
       return error;
     }
   }
+
+  async updateIceCream(id: string, iceCreamInput: any): Promise<any> {
+    try {
+      const iceCream = await this.iceCreamRepository.update(id, iceCreamInput);
+      return iceCream;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async deleteIceCream(id: string): Promise<any> {
+    try {
+      const deletedIceCream = await this.iceCreamRepository.delete(id);
+      return deletedIceCream;
+    } catch (error) {
+      return error;
+    }
+  }
 }
