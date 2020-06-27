@@ -1,18 +1,15 @@
 import {
-  Controller,
   Get,
-  Req,
   Res,
   Param,
   Body,
   JsonController,
   Post,
-  UploadedFile,
   Delete,
   Put,
 } from "routing-controllers";
 import { IceCreamService } from "../../services/v1/ice.cream.service";
-import { Response } from "express";
+import { IceCreamValidator } from "../../validators/v1/ice.cream.validator";
 
 @JsonController("/v1/ice_creams")
 class IceCreamController {
@@ -25,13 +22,13 @@ class IceCreamController {
   }
 
   @Post("/")
-  iceCreamCreate(@Body() iceCreamInput: any) {
+  iceCreamCreate(@Body() iceCreamInput: IceCreamValidator) {
     const iceCream = this.iceCreamService.createIceCream(iceCreamInput);
     return iceCream;
   }
 
   @Put("/:id")
-  iceCreamUpdate(@Param("id") id: string, @Body() iceCream: any) {
+  iceCreamUpdate(@Param("id") id: string, @Body() iceCream: IceCreamValidator) {
     const updatedIceCream = this.iceCreamService.updateIceCream(id, iceCream);
     return iceCream;
   }
