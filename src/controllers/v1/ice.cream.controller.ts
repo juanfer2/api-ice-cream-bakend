@@ -7,6 +7,7 @@ import {
   Post,
   Delete,
   Put,
+  Authorized,
 } from "routing-controllers";
 import { IceCreamService } from "../../services/v1/ice.cream.service";
 import { IceCreamValidator } from "../../validators/v1/ice.cream.validator";
@@ -15,6 +16,7 @@ import { IceCreamValidator } from "../../validators/v1/ice.cream.validator";
 class IceCreamController {
   constructor(private readonly iceCreamService: IceCreamService) {}
 
+  @Authorized()
   @Get("/")
   iceCreamList(@Res() response: any) {
     const iceCreams = this.iceCreamService.getIceCream();
@@ -28,7 +30,7 @@ class IceCreamController {
   }
 
   @Put("/:id")
-  iceCreamUpdate(@Param("id") id: string, @Body() iceCream: IceCreamValidator) {
+  iceCreamUpdate(@Param("id") id: string, @Body() iceCream: any) {
     const updatedIceCream = this.iceCreamService.updateIceCream(id, iceCream);
     return iceCream;
   }

@@ -2,8 +2,11 @@ import express from "express";
 import { resolve } from "path";
 import "reflect-metadata";
 import { createExpressServer } from "routing-controllers";
+import authorizationChecker from "./authorization/v1/authorization";
 
 const app: express.Application = createExpressServer({
+  authorizationChecker,
+
   defaultErrorHandler: false,
   classTransformer: true,
   validation: {

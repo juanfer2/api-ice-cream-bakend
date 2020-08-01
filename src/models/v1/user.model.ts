@@ -9,17 +9,42 @@ import {
 } from "typeorm";
 import { Transform } from "class-transformer";
 
-@Entity("IceCream")
-export class IceCream {
+@Entity("User")
+export class User {
   @Transform((id: ObjectID) => id.toHexString(), { toPlainOnly: true })
   @ObjectIdColumn({ name: "_id" })
-  id: number;
+  id: string;
 
   @Column()
-  name: string;
+  firstName: string;
 
   @Column()
-  imageUrl: string;
+  lastName: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  phoneNumber: string;
+
+  @Column()
+  cellPhone: string;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
+  // El signo de interrogación indica que el campo puede estar o no
+  @Column()
+  passwordConfirmation?: string;
+
+  @Column()
+  rol: string;
+
+  // @Column()
+  token?: string;
 
   @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;

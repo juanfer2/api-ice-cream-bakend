@@ -1,0 +1,14 @@
+paths:
+  /v1/users:
+    get:
+      tags:
+        - Get users
+      summary: Return all users.
+      description: This is a description
+      responses:
+        200:
+          description: The search was successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
